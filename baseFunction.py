@@ -32,6 +32,12 @@ def initialize_session_state():
     if "ai_resp" not in st.session_state:
         st.session_state.ai_resp = []
         
+    if "lang1" not in st.session_state:
+        st.session_state.lang1 = []
+        
+    if "lang2" not in st.session_state:
+        st.session_state.lang2 = []
+        
         
 def reset_conversation():
     st.session_state.messages = [
@@ -41,3 +47,5 @@ def reset_conversation():
     st.session_state.prompt_exists = False
     st.session_state.human_msg = []
     st.session_state.ai_resp = []
+    st.session_state.lang1 = []
+    st.session_state.lang2 = []
