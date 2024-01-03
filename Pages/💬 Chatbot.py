@@ -16,11 +16,41 @@ class StreamHandler(BaseCallbackHandler):
         self.container.markdown(self.text)
         
         
+def generate_chat_with_ai(user_prompt):
+    openai_llm = ChatOpenAI(
+        openai_api_key=st.session_state.openai_api_key,
+        model_name=st.session_state.llm_chatmodel,
+        temperature=st.session_state.temperature,
+        streaming=True,
+        callbacks=[StreamHandler(st.empty())]
+    )
+
+    # Add the user input to the messages
+    st.session_state.messages.append(HumanMessage(content=user_prompt))
+    
+    try:
+        response = openai_llm(st.session_state.messages)
+        generated_text = response.content
+    except Exception as e:
+        generated_text = None
+        st.error(f"An error occurred: {e}", icon="🚨")
+
+    if generated_text is not None:
+        # Add the generated output to the messages
+        st.session_state.messages.append(response)
+
+    return generated_text
+
+
+def enable_user_input():
+    st.session_state.prompt_exists = True
+
+        
 def main():
     default_role = "You are a helpful assistant."
     english_teacher = "You are an English teacher who analyzes texts and corrects any grammatical issues if necessary."
     translator = "You are a translator who translates English into Korean and Korean into English."
-                # "You are a translator who translates Enlish into {user chosen language}"
+                # "You are a translator who translates English into {user chosen language}"
     coding_adviser = "You are an expert in coding who provides useful advice on efficient coding styles."
     doc_analyzer = "You are an assistant analyzing the document uploaded."
     roles = (default_role, english_teacher, translator, coding_adviser, doc_analyzer)
@@ -55,7 +85,7 @@ def main():
             label_visibility="collapsed",
             key="temperature"
         )
-        st.write("(Consistent $\Longleftrightarrow$ More random)")
+        st.write("(Consistent $\Longleftrightarrow$ Random)")
         
     # AI Messages
     st.write("")
@@ -81,6 +111,35 @@ def main():
             st.write(human)
         with st.chat_message("ai"):
             st.write(ai)
+    
+    user_input = st.chat_input(
+        placeholder="Enter your query",
+        on_submit=enable_user_input,
+        disabled=False
+    )
+    
+    # Reset conversation
+    st.button(label="Reset conversation", on_click=bf.reset_conversation)
+    
+    if user_input and st.session_state.prompt_exists:
+        user_prompt = user_input.strip()
+        
+    if user_input and st.session_state.prompt_exists:
+        user_prompt = user_input.strip()
+
+    if st.session_state.prompt_exists:
+        with st.chat_message("human"):
+            st.write(user_prompt)
+
+        with st.chat_message("ai"):
+            generated_text = generate_chat_with_ai(user_prompt)
+
+        st.session_state.prompt_exists = False
+        
+        if generated_text is not None:
+            st.session_state.human_msg.append(user_prompt)
+            st.session_state.ai_resp.append(generated_text)
+            st.rerun()
 
 if __name__ == "__main__":
     if "openai_api_key" not in st.session_state:
