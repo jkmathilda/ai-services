@@ -98,16 +98,39 @@ def main():
         label_visibility="collapsed"
     )
     
+    
     if role_option == 'Assistant 💡':
         st.session_state.ai_role[0] = "You are a helpful assistant." 
+        
     elif role_option == 'Grammar analyzer ⌨️':
         st.session_state.ai_role[0] = "You are an English teacher who analyzes texts and corrects any grammatical issues if necessary."
+        
     elif role_option == 'Translator 🔠':
-        st.session_state.ai_role[0] = "You are a translator who translates English into Korean and Korean into English."
-                # "You are a translator who translates English into {user chosen language}"
+        col1, col2 = st.columns(2)
+        with col1:
+            st.session_state.lang1 = st.selectbox(
+                label='Language 1:',
+                options=['English', 'French', 'Spanish', 'German', 'Dutch', 'Italian', 'Hungarian', 'Latin', 
+                         'Korean', 'Mandarin', 'Japanese',  'Vietnamese', 'Thai'],
+                on_change=bf.reset_conversation
+            )
+        with col2:
+            st.session_state.lang2 = st.selectbox(
+                label='Language 2:',
+                options=['English', 'French', 'Spanish', 'German', 'Dutch', 'Italian', 'Hungarian', 'Latin', 
+                         'Korean', 'Mandarin', 'Japanese',  'Vietnamese', 'Thai'],
+                on_change=bf.reset_conversation
+            )
+        if st.session_state.lang1 == st.session_state.lang2:
+            st.session_state.ai_role[0] = "Repeat the user input. Do not say anything else. "
+        else:
+            st.session_state.ai_role[0] = '''You are a translator who translates {st.session_state.lang1} into {st.session_state.lang2} 
+            and {st.session_state.lang2} into {st.session_state.lang1}. Only translate. Do not say anything else. '''
+                
     elif role_option == 'Psychologist 🧸':
         st.session_state.ai_role[0] = '''You are an emphathetic psychologist who genuinely cares about the user and provides effective 
         solutions along with some real life examples or an anecdote of someone.'''
+        
     elif role_option == 'Teacher 📚':
         knowledge_level = st.radio(
             index=1,
@@ -117,6 +140,7 @@ def main():
         )
         st.session_state.ai_role[0] = '''You are a teacher who explains concepts clearly and easily with analogies or effective examples. 
         Explain in {knowledge_level} level with {knowledge_level} level vocabularies, analogies, and examples. '''
+        
     elif role_option == 'Coding advisor 💻':
         st.session_state.ai_role[0] = "You are an expert in coding who provides useful advice on efficient coding styles."
         
