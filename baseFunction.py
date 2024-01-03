@@ -39,6 +39,5 @@ def reset_conversation():
     ]
     st.session_state.ai_role[1] = st.session_state.ai_role[0]
     st.session_state.prompt_exists = False
-    st.session_state.temperature[1] = st.session_state.temperature[0]
     st.session_state.human_msg = []
     st.session_state.ai_resp = []
