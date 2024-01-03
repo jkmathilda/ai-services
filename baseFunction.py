@@ -24,4 +24,21 @@ def initialize_session_state():
         st.session_state.prompt_exists = False
         
     if "temperature" not in st.session_state:
-        st.session_state.temperature = [0.5, 0.5]
+        st.session_state.temperature = 0.5
+        
+    if "human_msg" not in st.session_state:
+        st.session_state.human_msg = []
+
+    if "ai_resp" not in st.session_state:
+        st.session_state.ai_resp = []
+        
+        
+def reset_conversation():
+    st.session_state.messages = [
+        SystemMessage(content=st.session_state.ai_role[0])
+    ]
+    st.session_state.ai_role[1] = st.session_state.ai_role[0]
+    st.session_state.prompt_exists = False
+    st.session_state.temperature[1] = st.session_state.temperature[0]
+    st.session_state.human_msg = []
+    st.session_state.ai_resp = []
