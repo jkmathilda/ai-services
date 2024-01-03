@@ -38,6 +38,9 @@ def initialize_session_state():
     if "lang2" not in st.session_state:
         st.session_state.lang2 = []
         
+    if "langtolearn" not in st.session_state:
+        st.session_state.langtolearn = []
+        
         
 def reset_conversation():
     st.session_state.messages = [
@@ -49,3 +52,4 @@ def reset_conversation():
     st.session_state.ai_resp = []
     st.session_state.lang1 = []
     st.session_state.lang2 = []
+    st.session_state.langtolearn = []
