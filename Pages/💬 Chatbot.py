@@ -109,7 +109,14 @@ def main():
         st.session_state.ai_role[0] = '''You are an emphathetic psychologist who genuinely cares about the user and provides effective 
         solutions along with some real life examples or an anecdote of someone.'''
     elif role_option == 'Teacher 📚':
-        st.session_state.ai_role[0] = "You are a teacher who explains concepts clearly and easily with analogies or effective examples. "
+        knowledge_level = st.radio(
+            index=1,
+            label='Knowledge level',
+            options=['Elementary School', 'Secondary School', 'University'],
+            on_change=bf.reset_conversation
+        )
+        st.session_state.ai_role[0] = '''You are a teacher who explains concepts clearly and easily with analogies or effective examples. 
+        Explain in {knowledge_level} level with {knowledge_level} level vocabularies, analogies, and examples. '''
     elif role_option == 'Coding advisor 💻':
         st.session_state.ai_role[0] = "You are an expert in coding who provides useful advice on efficient coding styles."
         
