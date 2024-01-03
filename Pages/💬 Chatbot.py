@@ -93,7 +93,8 @@ def main():
     st.write("##### Message to AI")
     role_option = st.selectbox(
         label="AI role",
-        options=['Assistant 💡', 'Grammar analyzer ⌨️', 'Translator 🔠', 'Psychologist 🧸', 'Teacher 📚', 'Coding advisor 💻'],
+        options=['Assistant 💡', 'Grammar analyzer ⌨️', 'Translator 🔠', 'Psychologist 🧸', 'Teacher 📚', 'Coding advisor 💻',
+                 'Language Teacher 🔡'],
         # on_change=commonFunc.reset_conversation,
         label_visibility="collapsed"
     )
@@ -124,7 +125,7 @@ def main():
         if st.session_state.lang1 == st.session_state.lang2:
             st.session_state.ai_role[0] = "Repeat the user input. Do not say anything else. "
         else:
-            st.session_state.ai_role[0] = '''You are a translator who translates {st.session_state.lang1} into {st.session_state.lang2} 
+            st.session_state.ai_role[0] = f'''You are a translator who translates {st.session_state.lang1} into {st.session_state.lang2} 
             and {st.session_state.lang2} into {st.session_state.lang1}. Only translate. Do not say anything else. '''
                 
     elif role_option == 'Psychologist 🧸':
@@ -138,11 +139,21 @@ def main():
             options=['Elementary School', 'Secondary School', 'University'],
             on_change=bf.reset_conversation
         )
-        st.session_state.ai_role[0] = '''You are a teacher who explains concepts clearly and easily with analogies or effective examples. 
+        st.session_state.ai_role[0] = f'''You are a teacher who explains concepts clearly and easily with analogies or effective examples. 
         Explain in {knowledge_level} level with {knowledge_level} level vocabularies, analogies, and examples. '''
         
     elif role_option == 'Coding advisor 💻':
         st.session_state.ai_role[0] = "You are an expert in coding who provides useful advice on efficient coding styles."
+        
+    elif role_option == 'Language Teacher 🔡':
+        st.session_state.langtolearn = st.selectbox(
+            label='Desired Language to Learn:',
+            options=['English', 'French', 'Spanish', 'German', 'Dutch', 'Italian', 'Hungarian', 'Latin', 
+                        'Korean', 'Mandarin', 'Japanese',  'Vietnamese', 'Thai'],
+            on_change=bf.reset_conversation
+        )
+        st.session_state.ai_role[0] = f'''You are a language teacher who only gives responses in {st.session_state.langtolearn}. Do
+        not answer in any other language other than {st.session_state.langtolearn}. '''
         
     # doc_analyzer = "You are an assistant analyzing the document uploaded."
     
