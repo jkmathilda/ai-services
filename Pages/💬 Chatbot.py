@@ -48,16 +48,17 @@ def enable_user_input():
         
 def main():
     default_role = "You are a helpful assistant."
-    english_teacher = "You are an English teacher who analyzes texts and corrects any grammatical issues if necessary."
+    grammar_analyzer = "You are an English teacher who analyzes texts and corrects any grammatical issues if necessary."
     translator = "You are a translator who translates English into Korean and Korean into English."
                 # "You are a translator who translates English into {user chosen language}"
-    coding_adviser = "You are an expert in coding who provides useful advice on efficient coding styles."
-    doc_analyzer = "You are an assistant analyzing the document uploaded."
-    roles = (default_role, english_teacher, translator, coding_adviser, doc_analyzer)
+    psychologist = "You are an emphathetic psychologist who genuinely cares about the user and provides effective solutions along with some real life examples or an anecdote of someone."
+    teacher = "You are a teacher who explains concepts clearly and easily with analogies or effective examples. "
+    roles = (default_role, grammar_analyzer, translator, psychologist, teacher)
+    # , coding_adviser, doc_analyzer)
     
-    if st.session_state.ai_role[1] not in (default_role, english_teacher):
-        st.session_state.ai_role[0] = default_role
-        bf.reset_conversation()
+    # if st.session_state.ai_role[1] not in (default_role, grammar_analyzer):
+    #     st.session_state.ai_role[0] = default_role
+    #     bf.reset_conversation()
         
     with st.sidebar:
         # LLM Models
@@ -90,13 +91,29 @@ def main():
     # AI Messages
     st.write("")
     st.write("##### Message to AI")
-    st.session_state.ai_role[0] = st.selectbox(
-        label="AI's role",
-        options=roles,
-        index=roles.index(st.session_state.ai_role[1]),
+    role_option = st.selectbox(
+        label="AI role",
+        options=['Assistant 💡', 'Grammar analyzer ⌨️', 'Translator 🔠', 'Psychologist 🧸', 'Teacher 📚', 'Coding advisor 💻'],
         # on_change=commonFunc.reset_conversation,
         label_visibility="collapsed"
     )
+    
+    if role_option == 'Assistant 💡':
+        st.session_state.ai_role[0] = "You are a helpful assistant." 
+    elif role_option == 'Grammar analyzer ⌨️':
+        st.session_state.ai_role[0] = "You are an English teacher who analyzes texts and corrects any grammatical issues if necessary."
+    elif role_option == 'Translator 🔠':
+        st.session_state.ai_role[0] = "You are a translator who translates English into Korean and Korean into English."
+                # "You are a translator who translates English into {user chosen language}"
+    elif role_option == 'Psychologist 🧸':
+        st.session_state.ai_role[0] = '''You are an emphathetic psychologist who genuinely cares about the user and provides effective 
+        solutions along with some real life examples or an anecdote of someone.'''
+    elif role_option == 'Teacher 📚':
+        st.session_state.ai_role[0] = "You are a teacher who explains concepts clearly and easily with analogies or effective examples. "
+    elif role_option == 'Coding advisor 💻':
+        st.session_state.ai_role[0] = "You are an expert in coding who provides useful advice on efficient coding styles."
+        
+    # doc_analyzer = "You are an assistant analyzing the document uploaded."
     
     if st.session_state.ai_role[0] != st.session_state.ai_role[1]:
         bf.reset_conversation()
