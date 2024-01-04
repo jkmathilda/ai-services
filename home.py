@@ -44,9 +44,10 @@ def main():
     else: 
         load_dotenv()
         if not load_dotenv():
-            st.write("Incorrect API key or unable to load .env 💣")
+            st.info("Incorrect API key or unable to load .env 💣")
             exit(1)
         else:
+            st.session_state.openai_api_key = os.getenv("OPENAI_API_KEY")
             st.info("Log-in successful!")
         
     st.session_state.openai = openai.OpenAI(
