@@ -201,7 +201,7 @@ def main():
             st.rerun()
 
 if __name__ == "__main__":
-    if "openai_api_key" not in st.session_state:
+    if "openai_api_key" not in st.session_state or st.session_state.openai_api_key == "":
         switch_page('Home')
 
     main()
