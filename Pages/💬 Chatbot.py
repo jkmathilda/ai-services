@@ -47,23 +47,10 @@ def enable_user_input():
 
         
 def main():
-    default_role = "You are a helpful assistant."
-    grammar_analyzer = "You are an English teacher who analyzes texts and corrects any grammatical issues if necessary."
-    translator = "You are a translator who translates English into Korean and Korean into English."
-                # "You are a translator who translates English into {user chosen language}"
-    psychologist = "You are an emphathetic psychologist who genuinely cares about the user and provides effective solutions along with some real life examples or an anecdote of someone."
-    teacher = "You are a teacher who explains concepts clearly and easily with analogies or effective examples. "
-    roles = (default_role, grammar_analyzer, translator, psychologist, teacher)
-    # , coding_adviser, doc_analyzer)
-    
-    # if st.session_state.ai_role[1] not in (default_role, grammar_analyzer):
-    #     st.session_state.ai_role[0] = default_role
-    #     bf.reset_conversation()
-        
     with st.sidebar:
         # LLM Models
         st.write("**LLM Models**")
-        llm_options = st.sidebar.radio(
+        st.session_state.llm_chatmodel = st.sidebar.radio(
             label="llm models",
             options=(
                 "gpt-3.5-turbo",
@@ -90,7 +77,7 @@ def main():
         
     # AI Messages
     st.write("")
-    st.write("##### Message to AI")
+    st.write("##### Assign a role to the AI")
     role_option = st.selectbox(
         label="AI role",
         options=['Assistant 💡', 'Grammar analyzer ⌨️', 'Translator 🔠', 'Psychologist 🧸', 'Teacher 📚', 'Coding advisor 💻',
