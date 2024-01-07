@@ -9,11 +9,11 @@ def main():
     bf.initialize_session_state()
     
     st.set_page_config(
-        page_title="AI Services",
+        page_title="GenieGPT",
         page_icon="🪄"
     )
     
-    st.title("AI Services 🪄")
+    st.title("GenieGPT 🪄")
     st.write("**OPENAI_API_KEY 🔑**")
     api_choice = st.radio(
         label="{API Choice}",
