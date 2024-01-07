@@ -6,11 +6,11 @@ To get started with this project, you'll need to clone the repository and set up
 
 ### Cloning the Repository
 
-    git clone https://github.com/jkmathilda/gpt-AI-services.git
+    git clone https://github.com/jkmathilda/gpt-GenieGPT.git
 
 ### Setting up a Virtual Environment
 
-    cd ./gpt-AI-services
+    cd ./gpt-GenieGPT
 
     pyenv versions
 
