@@ -33,6 +33,8 @@ To get started with this project, you'll need to clone the repository and set up
 
     pip install -r requirements.txt
 
+    pip freeze | tee requirements.txt.detail
+
 ### Configure the Application
 
 To configure the application, there are a few properties that can be set the environment
