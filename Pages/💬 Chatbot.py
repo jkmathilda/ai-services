@@ -50,15 +50,19 @@ def main():
     with st.sidebar:
         # LLM Models
         st.write("**LLM Models**")
-        st.session_state.llm_chatmodel = st.sidebar.radio(
+        # st.session_state.llm_chatmodel = 
+        st.sidebar.radio(
             label="llm models",
             options=(
                 "gpt-3.5-turbo",
                 "gpt-4"
             ),
             label_visibility="collapsed",
-            key="llm_chatmodel"
+            key="llm_chatmodel",
+            on_change=bf.reset_conversation
         )
+        
+        # st.session_state.llm_model = llm_chatmodel
         
         # Temperature
         st.write("")
