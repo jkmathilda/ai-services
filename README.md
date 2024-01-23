@@ -1,5 +1,7 @@
 # GenieGPT
 
+This web application, featuring GPT functionalities such as a chatbot, document analyzer, text-to-speech, and vision capabilities, is a dynamic platform. It's designed for regular updates to incorporate new features, ensuring continuous improvement and alignment with evolving digital needs.
+
 # Getting Started
 
 To get started with this project, you'll need to clone the repository and set up a virtual environment. This will allow you to install the required dependencies without affecting your system-wide Python installation.
