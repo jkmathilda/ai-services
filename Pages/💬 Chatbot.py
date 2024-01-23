@@ -47,6 +47,8 @@ def enable_user_input():
 
         
 def main():
+    st.header('Chatbot 💬')
+    
     with st.sidebar:
         # LLM Models
         st.write("**LLM Models**")
