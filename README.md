@@ -50,3 +50,7 @@ or select 'Your key' and enter your API key.
 ### Deactivate the virtual environment
 
     deactivate
+
+### Examples
+<img width="1692" alt="Screenshot 2024-01-23 at 12 06 43 AM" src="https://github.com/jkmathilda/gpt-quizzer/assets/142202145/3208a8ec-b733-4a9a-8b34-5d84f48e0f0e">
+<img width="1710" alt="Screenshot 2024-01-23 at 12 08 58 AM" src="https://github.com/jkmathilda/gpt-quizzer/assets/142202145/278334ef-16cd-48f9-8e2f-43f56d6e946b">
