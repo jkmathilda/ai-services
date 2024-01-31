@@ -58,5 +58,6 @@ or select 'Your key' and enter your API key.
 <img width="1710" alt="Screenshot 2024-01-23 at 12 08 58 AM" src="https://github.com/jkmathilda/gpt-quizzer/assets/142202145/278334ef-16cd-48f9-8e2f-43f56d6e946b">
 
 
-### Reference
-https://www.youtube.com/watch?v=Mw9lM5yYHBw
+# Reference
+
+[Introduction a ChatGPT & DALL·E](https://www.youtube.com/watch?v=Mw9lM5yYHBw)
