@@ -17,14 +17,14 @@ def main():
     st.write("**OPENAI_API_KEY 🔑**")
     api_choice = st.radio(
         label="{API Choice}",
-        options=("Your key", "My key"),
+        options=("Enter key", "Saved key"),
         label_visibility="collapsed",
         horizontal=True,
     )
     
     authen = False
     
-    if api_choice == "Your key":
+    if api_choice == "Enter key":
         st.session_state.openai_api_key = st.text_input(
             label="{Your OpenAI API Key}",
             type="password",
