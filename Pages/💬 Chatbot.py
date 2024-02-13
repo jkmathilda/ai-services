@@ -165,7 +165,7 @@ def main():
             st.write(ai)
     
     user_input = st.chat_input(
-        placeholder="Enter your query",
+        placeholder="Enter your message",
         on_submit=enable_user_input,
         disabled=False
     )
