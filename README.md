@@ -2,7 +2,7 @@
 
 This web application, featuring GPT functionalities such as a chatbot, document analyzer, text-to-speech, and vision capabilities, is a dynamic platform. It's designed for regular updates to incorporate new features, ensuring continuous improvement and alignment with evolving digital needs.
 
-![Image](https://github.com/jkmathilda/gpt-GenieGPT/assets/142202145/79fdd76d-8c36-486c-8583-62ca50c10ada)
+![](https://python.langchain.com/assets/images/rag_indexing-8160f90a90a33253d0154659cf7d453f.png)
 
 # Getting Started
 
