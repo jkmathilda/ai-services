@@ -38,8 +38,11 @@ def main():
         
         pdf_reader = PdfReader(pdf)         # Initialize a PDF reader to read the uploaded file
         pdf_text = ""                           # Initialize a string to accumulate extracted text
+        
+        pages = 0
         for page in pdf_reader.pages:       # Loop through each page in the PDF
             pdf_text += page.extract_text()     # Append the extracted text from each page to the 'text' variable
+            pages += 1
         
         # Text Split
         text_splitter = RecursiveCharacterTextSplitter(
@@ -66,7 +69,7 @@ def main():
             summary = summarize_document(chunks)
             st.write(summary)
 
-def summarize_document(chunks, model="gpt-3.5-turbo"):
+def summarize_document(docs, model="gpt-3.5-turbo"):
     map_prompt_template = """
         Write a summary of this chunk of text that includes the main points and any important details.
         {text}
@@ -101,20 +104,10 @@ def summarize_document(chunks, model="gpt-3.5-turbo"):
         verbose=True,
     )
     
-    summaries = ""
-    for chunk in chunks:
-        # Create a document-like object for each chunk
-        doc = {'page_content': chunk}
-        # Run the summary chain on each document-like object
-        output = summary_chain.run([doc])
-        summaries += output + "\n\n"
+    output = summary_chain.run(docs)
+    print(output)
     
-    return summaries
-    
-    # output = summary_chain.run(docs)
-    # print(output)
-    
-    # return output
+    return output
 
 if __name__ == "__main__":
     if "openai_api_key" not in st.session_state or st.session_state.openai_api_key == "" or not(st.session_state.openai_api_key.startswith('sk-')):
